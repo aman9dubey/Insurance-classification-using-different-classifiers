@@ -10,7 +10,7 @@ from sklearn.feature_selection import SelectPercentile, f_classif
 
 
 
-def preprocess(words_file = "underwriter.csv", authors_file="plan_name.csv"):		#include pkl file (if csv not working)
+def preprocess(main_file = "underwriter.csv", plan_file="plan_name.csv"):		#include pkl file (if csv not working)
     """ 
         this function takes a pre-made list of plan names (by default underwriter.csv)
         and the corresponding authors (by default plan_name.csv) and performs
@@ -29,17 +29,17 @@ def preprocess(words_file = "underwriter.csv", authors_file="plan_name.csv"):		#
 
     ### the words (features) and authors (labels), already largely preprocessed
     ### this preprocessing will be repeated in the text learning mini-project
-    authors_file_handler = open(authors_file, "r")
-    authors = pickle.load(authors_file_handler)
-    authors_file_handler.close()
+    plan_file_handler = open(plan_file, "r")
+    plans = pickle.load(plan_file_handler)
+    plan_file_handler.close()
 
-    words_file_handler = open(words_file, "r")
-    word_data = cPickle.load(words_file_handler)
-    words_file_handler.close()
+    main_file_handler = open(main_file, "r")
+    main_data = cPickle.load(main_file_handler)
+    main_file_handler.close()
 
     ### test_size is the percentage of events assigned to the test set
     ### (remainder go into training)
-    features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(word_data, authors, test_size=0.1, random_state=42)
+    features_train, features_test, labels_train, labels_test = cross_validation.train_test_split(main_data, plans, test_size=0.1, random_state=42)
 
 
 
