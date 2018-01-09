@@ -13,7 +13,7 @@ from sklearn.feature_selection import SelectPercentile, f_classif
 def preprocess(words_file = "underwriter.csv", authors_file="plan_name.csv"):		#include pkl file (if csv not working)
     """ 
         this function takes a pre-made list of plan names (by default underwriter.csv)
-        and the corresponding authors (by default email_authors.pkl) and performs
+        and the corresponding authors (by default plan_name.csv) and performs
         a number of preprocessing steps:
             -- splits into training/testing sets (10% testing)
             -- vectorizes into tfidf matrix
@@ -58,8 +58,4 @@ def preprocess(words_file = "underwriter.csv", authors_file="plan_name.csv"):		#
     features_train_transformed = selector.transform(features_train_transformed).toarray()
     features_test_transformed  = selector.transform(features_test_transformed).toarray()
 
-    ### info on the data
-    print "no. of Chris training emails:", sum(labels_train)
-    print "no. of Sara training emails:", len(labels_train)-sum(labels_train)
-    
     return features_train_transformed, features_test_transformed, labels_train, labels_test
